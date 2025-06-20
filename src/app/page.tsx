@@ -30,7 +30,7 @@ export default function Home() {
           source: "Marcos 3:14",
           commentary: "Antes de enviarlos a predicar, Jesús los invitó a estar con él. La relación era primero, luego la misión."
         },
-        image: {
+        image: { // Data for image remains, but will not be rendered
           alt: "Jesús compartiendo con sus discípulos",
           hint: "Jesus disciples"
         }
@@ -45,7 +45,7 @@ export default function Home() {
           source: "Lucas 19:10"
         },
         applicationNote: "Aplicación: Jesús fue un constructor de puentes, no de muros. Nosotros también debemos acercarnos, no excluir.",
-        image: {
+        image: { // Data for image remains, but will not be rendered
           alt: "Construyendo un puente sobre una brecha",
           hint: "bridge connection"
         }
@@ -60,7 +60,7 @@ export default function Home() {
           { text: "Ya no os llamaré siervos… pero os he llamado amigos.", source: "Juan 15:15" }
         ],
         applicationNote: "La transformación ocurre en la cercanía, no en la distancia.",
-        image: {
+        image: { // Data for image remains, but will not be rendered
           alt: "Personas aprendiendo juntas en un ambiente cercano",
           hint: "mentor guidance"
         }
@@ -75,7 +75,7 @@ export default function Home() {
         "Falta de tiempo para estar con otros",
         "Superficialidad de las redes sociales"
       ],
-      image: {
+      image: { // Data for image remains, but will not be rendered
         alt: "Una cadena rota simbolizando barreras superadas",
         hint: "broken chain"
       }
@@ -88,7 +88,7 @@ export default function Home() {
         "Invita a comer o conversar a alguien nuevo del grupo o iglesia.",
         "Decide que tu discipulado será relacional, no solo informativo."
       ],
-      image: {
+      image: { // Data for image remains, but will not be rendered
         alt: "Manos extendiéndose para ayudar",
         hint: "helping hands"
       }
@@ -97,7 +97,7 @@ export default function Home() {
       title: "Frase clave",
       icon: Pin,
       text: "Jesús construyó relaciones antes de transformar corazones. Y aún hoy, el amor relacional es su método más poderoso.",
-      image: {
+      image: { // Data for image remains, but will not be rendered
         alt: "Un corazón con una llave, simbolizando el acceso al entendimiento",
         hint: "heart key"
       }
@@ -129,17 +129,7 @@ export default function Home() {
         {guideContent.points.map((point, index) => (
           <AnimatedSection key={index} delay={index * 150} animationName="animate-fade-in-up">
             <ContentCard title={point.title} titlePrefix={point.titlePrefix} icon={point.icon}>
-              {point.image && (
-                <div className="relative aspect-[16/9] w-full max-w-md mx-auto rounded-lg overflow-hidden shadow-lg mb-6">
-                  <Image
-                    src="https://placehold.co/600x338.png"
-                    alt={point.image.alt}
-                    fill
-                    style={{ objectFit: "cover" }}
-                    data-ai-hint={point.image.hint}
-                  />
-                </div>
-              )}
+              {/* Image block removed */}
               <p className="whitespace-pre-line">{point.text}</p>
               {point.scripture && (
                 <QuoteBlock
@@ -159,17 +149,7 @@ export default function Home() {
         {/* Barriers Section */}
         <AnimatedSection delay={guideContent.points.length * 150} animationName="animate-fade-in-up">
           <ContentCard title={guideContent.barriers.title} icon={guideContent.barriers.icon}>
-            {guideContent.barriers.image && (
-              <div className="relative aspect-[16/9] w-full max-w-md mx-auto rounded-lg overflow-hidden shadow-lg mb-6">
-                <Image
-                  src="https://placehold.co/600x338.png"
-                  alt={guideContent.barriers.image.alt}
-                  fill
-                  style={{ objectFit: "cover" }}
-                  data-ai-hint={guideContent.barriers.image.hint}
-                />
-              </div>
-            )}
+            {/* Image block removed */}
             <ul className="list-disc list-inside space-y-2 pl-2">
               {guideContent.barriers.items.map((item, index) => <li key={index}>{item}</li>)}
             </ul>
@@ -179,17 +159,7 @@ export default function Home() {
         {/* Practical Application Section */}
         <AnimatedSection delay={(guideContent.points.length + 1) * 150} animationName="animate-fade-in-up">
           <ContentCard title={guideContent.practicalApplication.title} icon={guideContent.practicalApplication.icon}>
-             {guideContent.practicalApplication.image && (
-              <div className="relative aspect-[16/9] w-full max-w-md mx-auto rounded-lg overflow-hidden shadow-lg mb-6">
-                <Image
-                  src="https://placehold.co/600x338.png"
-                  alt={guideContent.practicalApplication.image.alt}
-                  fill
-                  style={{ objectFit: "cover" }}
-                  data-ai-hint={guideContent.practicalApplication.image.hint}
-                />
-              </div>
-            )}
+            {/* Image block removed */}
             <ul className="list-disc list-inside space-y-2 pl-2">
               {guideContent.practicalApplication.items.map((item, index) => <li key={index}>{item}</li>)}
             </ul>
@@ -199,17 +169,7 @@ export default function Home() {
         {/* Key Phrase Section */}
         <AnimatedSection delay={(guideContent.points.length + 2) * 150} animationName="animate-fade-in-up">
           <ContentCard title={guideContent.keyPhrase.title} icon={guideContent.keyPhrase.icon} className="bg-accent/10 border-accent">
-            {guideContent.keyPhrase.image && (
-              <div className="relative aspect-[16/9] w-full max-w-md mx-auto rounded-lg overflow-hidden shadow-lg mb-6">
-                <Image
-                  src="https://placehold.co/600x338.png"
-                  alt={guideContent.keyPhrase.image.alt}
-                  fill
-                  style={{ objectFit: "cover" }}
-                  data-ai-hint={guideContent.keyPhrase.image.hint}
-                />
-              </div>
-            )}
+            {/* Image block removed */}
              <p className="text-xl font-semibold text-accent-foreground/90 italic text-center py-4">&ldquo;{guideContent.keyPhrase.text}&rdquo;</p>
           </ContentCard>
         </AnimatedSection>
