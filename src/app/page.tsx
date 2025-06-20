@@ -33,7 +33,11 @@ export default function Home() {
         titlePrefix: "2.",
         title: "Jesús buscaba restaurar relaciones rotas",
         icon: Link2,
-        text: "Jesús no solo se acercó a los “fáciles de amar”. Se relacionó con:\n- Cobradores de impuestos (Mateo)\n- Mujeres rechazadas (la samaritana)\n- Enfermos marginados (los leprosos)\n- Traidores (Judas)",
+        text: `Jesús no solo se acercó a los “fáciles de amar”. Se relacionó con:
+- Cobradores de impuestos (Mateo)
+- Mujeres rechazadas (la samaritana)
+- Enfermos marginados (los leprosos)
+- Traidores (Judas)`,
         scripture: {
           text: "Porque el Hijo del Hombre vino a buscar y a salvar lo que se había perdido.",
           source: "Lucas 19:10"
@@ -78,86 +82,106 @@ export default function Home() {
     }
   };
 
+  const FullScreenSection = ({ children, className }: { children: React.ReactNode, className?: string }) => (
+    <section className={`min-h-screen flex flex-col justify-center items-center p-4 md:p-8 ${className}`}>
+      <div className="w-full max-w-4xl">
+        {children}
+      </div>
+    </section>
+  );
+
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <Header />
-      <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 space-y-16 md:space-y-24">
+      <main className="flex-grow">
 
         {/* Hero Section */}
-        <AnimatedSection animationName="animate-fade-in">
-          <section className="text-center space-y-4">
-            <div className="inline-block p-3 bg-primary/10 rounded-full">
-              <Heart className="h-12 w-12 text-primary" strokeWidth={1.5}/>
+        <FullScreenSection>
+          <AnimatedSection animationName="animate-fade-in" className="w-full">
+            <div className="text-center space-y-4">
+              <div className="inline-block p-3 bg-primary/10 rounded-full">
+                <Heart className="h-12 w-12 text-primary" strokeWidth={1.5}/>
+              </div>
+              <h1 className="text-4xl md:text-5xl font-bold font-headline text-primary">{guideContent.title}</h1>
+              <p className="text-lg text-muted-foreground">{guideContent.author}</p>
+              <QuoteBlock quote={guideContent.baseScripture.text} source={guideContent.baseScripture.source} className="max-w-2xl mx-auto bg-primary/5 border-primary text-primary-foreground/80" />
+              <p className="text-xl md:text-2xl text-foreground/90 font-semibold max-w-3xl mx-auto pt-4">{guideContent.objective}</p>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold font-headline text-primary">{guideContent.title}</h1>
-            <p className="text-lg text-muted-foreground">{guideContent.author}</p>
-            <QuoteBlock quote={guideContent.baseScripture.text} source={guideContent.baseScripture.source} className="max-w-2xl mx-auto bg-primary/5 border-primary text-primary-foreground/80" />
-            <p className="text-xl md:text-2xl text-foreground/90 font-semibold max-w-3xl mx-auto pt-4">{guideContent.objective}</p>
-          </section>
-        </AnimatedSection>
+          </AnimatedSection>
+        </FullScreenSection>
 
         {/* Teaching Points */}
         {guideContent.points.map((point, index) => (
-          <AnimatedSection key={index} delay={index * 150} animationName="animate-fade-in-up">
-            <ContentCard title={point.title} titlePrefix={point.titlePrefix} icon={point.icon}>
-              <p className="whitespace-pre-line">{point.text}</p>
-              {point.scripture && (
-                <QuoteBlock
-                  quote={point.scripture.text}
-                  source={point.scripture.source}
-                  commentary={point.scripture.commentary}
-                />
-              )}
-              {point.scriptures && point.scriptures.map((s, i) => (
-                <QuoteBlock key={i} quote={s.text} source={s.source} className={i > 0 ? "mt-3" : ""} />
-              ))}
-              {point.applicationNote && <p className="mt-3 text-sm font-medium text-primary">{point.applicationNote}</p>}
-            </ContentCard>
-          </AnimatedSection>
+          <FullScreenSection key={index}>
+            <AnimatedSection delay={index * 150} animationName="animate-fade-in-up" className="w-full">
+              <ContentCard title={point.title} titlePrefix={point.titlePrefix} icon={point.icon}>
+                <p className="whitespace-pre-line text-lg md:text-xl">{point.text}</p>
+                {point.scripture && (
+                  <QuoteBlock
+                    quote={point.scripture.text}
+                    source={point.scripture.source}
+                    commentary={point.scripture.commentary}
+                  />
+                )}
+                {point.scriptures && point.scriptures.map((s, i) => (
+                  <QuoteBlock key={i} quote={s.text} source={s.source} className={`mt-3 ${i > 0 ? "md:mt-4" : ""}`} />
+                ))}
+                {point.applicationNote && <p className="mt-4 text-base md:text-lg font-medium text-primary">{point.applicationNote}</p>}
+              </ContentCard>
+            </AnimatedSection>
+          </FullScreenSection>
         ))}
 
         {/* Barriers Section */}
-        <AnimatedSection delay={guideContent.points.length * 150} animationName="animate-fade-in-up">
-          <ContentCard title={guideContent.barriers.title} icon={guideContent.barriers.icon}>
-            <ul className="list-disc list-inside space-y-2 pl-2">
-              {guideContent.barriers.items.map((item, index) => <li key={index}>{item}</li>)}
-            </ul>
-          </ContentCard>
-        </AnimatedSection>
+        <FullScreenSection>
+          <AnimatedSection delay={guideContent.points.length * 150} animationName="animate-fade-in-up" className="w-full">
+            <ContentCard title={guideContent.barriers.title} icon={guideContent.barriers.icon}>
+              <ul className="list-disc list-inside space-y-3 pl-2 text-lg md:text-xl">
+                {guideContent.barriers.items.map((item, index) => <li key={index}>{item}</li>)}
+              </ul>
+            </ContentCard>
+          </AnimatedSection>
+        </FullScreenSection>
 
         {/* Practical Application Section */}
-        <AnimatedSection delay={(guideContent.points.length + 1) * 150} animationName="animate-fade-in-up">
-          <ContentCard title={guideContent.practicalApplication.title} icon={guideContent.practicalApplication.icon}>
-            <ul className="list-disc list-inside space-y-2 pl-2">
-              {guideContent.practicalApplication.items.map((item, index) => <li key={index}>{item}</li>)}
-            </ul>
-          </ContentCard>
-        </AnimatedSection>
+        <FullScreenSection>
+          <AnimatedSection delay={(guideContent.points.length + 1) * 150} animationName="animate-fade-in-up" className="w-full">
+            <ContentCard title={guideContent.practicalApplication.title} icon={guideContent.practicalApplication.icon}>
+              <ul className="list-disc list-inside space-y-3 pl-2 text-lg md:text-xl">
+                {guideContent.practicalApplication.items.map((item, index) => <li key={index}>{item}</li>)}
+              </ul>
+            </ContentCard>
+          </AnimatedSection>
+        </FullScreenSection>
 
         {/* Key Phrase Section */}
-        <AnimatedSection delay={(guideContent.points.length + 2) * 150} animationName="animate-fade-in-up">
-          <ContentCard title={guideContent.keyPhrase.title} icon={guideContent.keyPhrase.icon} className="bg-accent/10 border-accent">
-             <p className="text-xl font-semibold text-accent-foreground/90 italic text-center py-4">&ldquo;{guideContent.keyPhrase.text}&rdquo;</p>
-          </ContentCard>
-        </AnimatedSection>
+        <FullScreenSection>
+          <AnimatedSection delay={(guideContent.points.length + 2) * 150} animationName="animate-fade-in-up" className="w-full">
+            <ContentCard title={guideContent.keyPhrase.title} icon={guideContent.keyPhrase.icon} className="bg-accent/10 border-accent">
+               <p className="text-2xl md:text-3xl font-semibold text-accent-foreground/90 italic text-center py-4">&ldquo;{guideContent.keyPhrase.text}&rdquo;</p>
+            </ContentCard>
+          </AnimatedSection>
+        </FullScreenSection>
 
         {/* Trivia Game Link Section */}
-        <AnimatedSection delay={(guideContent.points.length + 3) * 150} animationName="animate-fade-in-up">
-          <section className="text-center py-12">
-            <div className="inline-block p-3 bg-primary/10 rounded-full mb-4">
-              <Gamepad2 className="h-10 w-10 text-primary" strokeWidth={1.5} />
+        <FullScreenSection>
+            <AnimatedSection delay={(guideContent.points.length + 3) * 150} animationName="animate-fade-in-up" className="w-full">
+            <div className="text-center py-12">
+                <div className="inline-block p-3 bg-primary/10 rounded-full mb-4">
+                <Gamepad2 className="h-10 w-10 text-primary" strokeWidth={1.5} />
+                </div>
+                <h2 className="text-3xl font-bold font-headline text-primary mb-4">Pon a prueba tus conocimientos</h2>
+                <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
+                ¿Listo para ver cuánto has aprendido? ¡Juega nuestra trivia interactiva!
+                </p>
+                <Link href="/trivia" passHref>
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                    Comenzar Trivia
+                </Button>
+                </Link>
             </div>
-            <h2 className="text-3xl font-bold font-headline text-primary mb-4">Pon a prueba tus conocimientos</h2>
-            <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
-              ¿Listo para ver cuánto has aprendido? ¡Juega nuestra trivia interactiva!
-            </p>
-            <Link href="/trivia" passHref>
-              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                Comenzar Trivia
-              </Button>
-            </Link>
-          </section>
-        </AnimatedSection>
+            </AnimatedSection>
+        </FullScreenSection>
 
       </main>
       <Footer />
