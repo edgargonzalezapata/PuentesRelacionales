@@ -1,8 +1,8 @@
 // src/components/ai/PersonalizedPromptsForm.tsx
 "use client";
 
-import { useFormState, useFormStatus } from 'react-dom';
-import { useEffect, useRef } from 'react';
+import { useActionState, useOptimistic, useRef, useEffect, type FormEvent } from 'react';
+import { useFormStatus } from 'react-dom';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
@@ -28,7 +28,7 @@ function SubmitButton() {
 }
 
 export function PersonalizedPromptsForm() {
-  const [state, formAction] = useFormState(getPersonalizedPromptsAction, initialState);
+  const [state, formAction] = useActionState(getPersonalizedPromptsAction, initialState);
   const { toast } = useToast();
   const formRef = useRef<HTMLFormElement>(null);
 
