@@ -134,8 +134,8 @@ export default function Home() {
                   <Image
                     src="https://placehold.co/600x338.png"
                     alt={point.image.alt}
-                    layout="fill"
-                    objectFit="cover"
+                    fill
+                    style={{ objectFit: "cover" }}
                     data-ai-hint={point.image.hint}
                   />
                 </div>
@@ -164,8 +164,8 @@ export default function Home() {
                 <Image
                   src="https://placehold.co/600x338.png"
                   alt={guideContent.barriers.image.alt}
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  style={{ objectFit: "cover" }}
                   data-ai-hint={guideContent.barriers.image.hint}
                 />
               </div>
@@ -184,8 +184,8 @@ export default function Home() {
                 <Image
                   src="https://placehold.co/600x338.png"
                   alt={guideContent.practicalApplication.image.alt}
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  style={{ objectFit: "cover" }}
                   data-ai-hint={guideContent.practicalApplication.image.hint}
                 />
               </div>
@@ -204,8 +204,8 @@ export default function Home() {
                 <Image
                   src="https://placehold.co/600x338.png"
                   alt={guideContent.keyPhrase.image.alt}
-                  layout="fill"
-                  objectFit="cover"
+                  fill
+                  style={{ objectFit: "cover" }}
                   data-ai-hint={guideContent.keyPhrase.image.hint}
                 />
               </div>
