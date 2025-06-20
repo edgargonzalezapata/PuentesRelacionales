@@ -1,4 +1,3 @@
-
 // src/components/trivia/TriviaGame.tsx
 "use client";
 
@@ -136,9 +135,12 @@ export const TriviaGame: FC = () => {
         <p className="text-lg font-semibold text-foreground/90">{currentQuestion.question}</p>
         <RadioGroup value={selectedAnswer ?? ""} onValueChange={setSelectedAnswer} disabled={showFeedback}>
           {currentQuestion.options.map((option, index) => (
-            <div key={index} className="flex items-center space-x-2 p-2 rounded-md hover:bg-accent/10 transition-colors">
+            <div key={index} className="flex items-center space-x-3 p-2 rounded-md hover:bg-accent/10 transition-colors">
               <RadioGroupItem value={option} id={`option-${currentQuestion.id}-${index}`} className="border-primary text-primary focus:ring-primary data-[state=checked]:bg-primary" />
-              <Label htmlFor={`option-${currentQuestion.id}-${index}`} className="flex-1 cursor-pointer text-foreground/80">{option}</Label>
+              <Label htmlFor={`option-${currentQuestion.id}-${index}`} className="flex-1 cursor-pointer text-foreground/80">
+                <span className="font-bold text-primary mr-2">{String.fromCharCode(65 + index)}.</span>
+                {option}
+              </Label>
             </div>
           ))}
         </RadioGroup>
