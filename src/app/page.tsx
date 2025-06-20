@@ -3,8 +3,9 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { AnimatedSection } from '@/components/AnimatedSection';
 import { ContentCard, QuoteBlock } from '@/components/guide/ContentCard';
-import { Users, Heart, Link2, Handshake, AlertTriangle, ListChecks, Pin } from 'lucide-react';
-import { TriviaGame } from '@/components/trivia/TriviaGame';
+import { Users, Heart, Link2, Handshake, AlertTriangle, ListChecks, Pin, Gamepad2 } from 'lucide-react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 
 export default function Home() {
@@ -140,9 +141,22 @@ export default function Home() {
           </ContentCard>
         </AnimatedSection>
 
-        {/* Trivia Game Section */}
+        {/* Trivia Game Link Section */}
         <AnimatedSection delay={(guideContent.points.length + 3) * 150} animationName="animate-fade-in-up">
-          <TriviaGame />
+          <section className="text-center py-12">
+            <div className="inline-block p-3 bg-primary/10 rounded-full mb-4">
+              <Gamepad2 className="h-10 w-10 text-primary" strokeWidth={1.5} />
+            </div>
+            <h2 className="text-3xl font-bold font-headline text-primary mb-4">Pon a prueba tus conocimientos</h2>
+            <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
+              ¿Listo para ver cuánto has aprendido? ¡Juega nuestra trivia interactiva!
+            </p>
+            <Link href="/trivia" passHref>
+              <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                Comenzar Trivia
+              </Button>
+            </Link>
+          </section>
         </AnimatedSection>
 
       </main>
