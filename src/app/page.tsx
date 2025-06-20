@@ -7,7 +7,7 @@ import { ContentCard, QuoteBlock } from '@/components/guide/ContentCard';
 import { PersonalizedPromptsForm } from '@/components/ai/PersonalizedPromptsForm';
 import { RelationshipTracker } from '@/components/tracker/RelationshipTracker';
 import { Button } from '@/components/ui/button';
-import { BookOpenText, Users, Heart, MessageSquareText, Link2, Handshake, AlertTriangle, ListChecks, Pin, HelpingHand, Download, Sparkles } from 'lucide-react';
+import { BookOpenText, Users, Link2, Handshake, AlertTriangle, ListChecks, Pin, HelpingHand } from 'lucide-react';
 import Image from 'next/image';
 
 export default function Home() {
@@ -108,7 +108,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen bg-background">
       <Header />
       <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 space-y-16 md:space-y-24">
-        
+
         {/* Hero Section */}
         <AnimatedSection animationName="animate-fade-in">
           <section className="text-center space-y-4">
@@ -131,21 +131,21 @@ export default function Home() {
             <ContentCard title={point.title} titlePrefix={point.titlePrefix} icon={point.icon}>
               {point.image && (
                 <div className="relative aspect-[16/9] w-full max-w-md mx-auto rounded-lg overflow-hidden shadow-lg mb-6">
-                  <Image 
-                    src="https://placehold.co/600x338.png" 
-                    alt={point.image.alt} 
-                    layout="fill" 
-                    objectFit="cover" 
+                  <Image
+                    src="https://placehold.co/600x338.png"
+                    alt={point.image.alt}
+                    layout="fill"
+                    objectFit="cover"
                     data-ai-hint={point.image.hint}
                   />
                 </div>
               )}
               <p className="whitespace-pre-line">{point.text}</p>
               {point.scripture && (
-                <QuoteBlock 
-                  quote={point.scripture.text} 
-                  source={point.scripture.source} 
-                  commentary={point.scripture.commentary} 
+                <QuoteBlock
+                  quote={point.scripture.text}
+                  source={point.scripture.source}
+                  commentary={point.scripture.commentary}
                 />
               )}
               {point.scriptures && point.scriptures.map((s, i) => (
@@ -161,11 +161,11 @@ export default function Home() {
           <ContentCard title={guideContent.barriers.title} icon={guideContent.barriers.icon}>
             {guideContent.barriers.image && (
               <div className="relative aspect-[16/9] w-full max-w-md mx-auto rounded-lg overflow-hidden shadow-lg mb-6">
-                <Image 
-                  src="https://placehold.co/600x338.png" 
-                  alt={guideContent.barriers.image.alt} 
-                  layout="fill" 
-                  objectFit="cover" 
+                <Image
+                  src="https://placehold.co/600x338.png"
+                  alt={guideContent.barriers.image.alt}
+                  layout="fill"
+                  objectFit="cover"
                   data-ai-hint={guideContent.barriers.image.hint}
                 />
               </div>
@@ -181,11 +181,11 @@ export default function Home() {
           <ContentCard title={guideContent.practicalApplication.title} icon={guideContent.practicalApplication.icon}>
              {guideContent.practicalApplication.image && (
               <div className="relative aspect-[16/9] w-full max-w-md mx-auto rounded-lg overflow-hidden shadow-lg mb-6">
-                <Image 
-                  src="https://placehold.co/600x338.png" 
-                  alt={guideContent.practicalApplication.image.alt} 
-                  layout="fill" 
-                  objectFit="cover" 
+                <Image
+                  src="https://placehold.co/600x338.png"
+                  alt={guideContent.practicalApplication.image.alt}
+                  layout="fill"
+                  objectFit="cover"
                   data-ai-hint={guideContent.practicalApplication.image.hint}
                 />
               </div>
@@ -201,11 +201,11 @@ export default function Home() {
           <ContentCard title={guideContent.keyPhrase.title} icon={guideContent.keyPhrase.icon} className="bg-accent/10 border-accent">
             {guideContent.keyPhrase.image && (
               <div className="relative aspect-[16/9] w-full max-w-md mx-auto rounded-lg overflow-hidden shadow-lg mb-6">
-                <Image 
-                  src="https://placehold.co/600x338.png" 
-                  alt={guideContent.keyPhrase.image.alt} 
-                  layout="fill" 
-                  objectFit="cover" 
+                <Image
+                  src="https://placehold.co/600x338.png"
+                  alt={guideContent.keyPhrase.image.alt}
+                  layout="fill"
+                  objectFit="cover"
                   data-ai-hint={guideContent.keyPhrase.image.hint}
                 />
               </div>
@@ -213,7 +213,6 @@ export default function Home() {
              <p className="text-xl font-semibold text-accent-foreground/90 italic text-center py-4">&ldquo;{guideContent.keyPhrase.text}&rdquo;</p>
           </ContentCard>
         </AnimatedSection>
-
       </main>
       <Footer />
     </div>
