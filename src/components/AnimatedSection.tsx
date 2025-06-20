@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 interface AnimatedSectionProps {
   children: ReactNode;
   className?: string;
-  delay?: number; // in milliseconds for staggered effect if needed
+  delay?: number; 
   animationName?: 'animate-fade-in-up' | 'animate-fade-in';
 }
 
@@ -15,35 +15,21 @@ export function AnimatedSection({
   children,
   className,
   delay = 0,
-  animationName = 'animate-fade-in-up',
+  animationName = 'animate-fade-in', // Changed default to 'animate-fade-in' for page turns
 }: AnimatedSectionProps) {
   const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
+  // sectionRef is not used in the new logic but kept for minimal changes if other uses exist.
+  const sectionRef = useRef<HTMLDivElement>(null); 
 
   useEffect(() => {
-    const currentRef = sectionRef.current;
-    if (!currentRef) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(currentRef);
-        }
-      },
-      {
-        threshold: 0.1, // Adjust this value to control when the animation triggers
-      }
-    );
-
-    observer.observe(currentRef);
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, []);
+    // Set to false briefly then true to ensure animation re-triggers on key change (re-mount)
+    setIsVisible(false);
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 20); // A very short delay
+    
+    return () => clearTimeout(timer);
+  }, []); // Runs on mount (and re-mount due to key change)
 
   return (
     <div
@@ -53,7 +39,7 @@ export function AnimatedSection({
         isVisible && animationName, // Apply animation class when visible
         className
       )}
-      style={isVisible ? { animationDelay: `${delay}ms` } : {}}
+      style={isVisible ? { animationDelay: `${delay}ms` } : {}} // animation-duration is from tailwind.config.ts
     >
       {children}
     </div>
