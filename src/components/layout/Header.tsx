@@ -8,7 +8,7 @@ export function Header() {
         <Link href="/" className="flex items-center gap-2 group">
           <HeartHandshake className="h-8 w-8 text-primary group-hover:text-primary/80 transition-colors" />
           <h1 className="text-2xl md:text-3xl font-headline font-bold text-primary group-hover:text-primary/80 transition-colors">
-            Relational Bridges
+            Puentes Relacionales
           </h1>
         </Link>
         <nav>

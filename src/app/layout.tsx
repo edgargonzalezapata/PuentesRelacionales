@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Relational Bridges',
+  title: 'Puentes Relacionales',
   description: 'Guía de enseñanza sobre cómo construir relaciones, inspirada en los hábitos de Jesús.',
 };
 
