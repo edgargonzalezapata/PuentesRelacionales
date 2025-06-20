@@ -2,13 +2,10 @@
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { AnimatedSection } from '@/components/AnimatedSection';
-import { SectionTitle } from '@/components/ui/SectionTitle';
 import { ContentCard, QuoteBlock } from '@/components/guide/ContentCard';
-import { PersonalizedPromptsForm } from '@/components/ai/PersonalizedPromptsForm';
-import { RelationshipTracker } from '@/components/tracker/RelationshipTracker';
-import { Button } from '@/components/ui/button';
-import { Users, Heart, Link2, Handshake, AlertTriangle, ListChecks, Pin, HelpingHand } from 'lucide-react';
-import Image from 'next/image';
+import { Users, Heart, Link2, Handshake, AlertTriangle, ListChecks, Pin } from 'lucide-react';
+import { TriviaGame } from '@/components/trivia/TriviaGame';
+
 
 export default function Home() {
   const guideContent = {
@@ -142,6 +139,12 @@ export default function Home() {
              <p className="text-xl font-semibold text-accent-foreground/90 italic text-center py-4">&ldquo;{guideContent.keyPhrase.text}&rdquo;</p>
           </ContentCard>
         </AnimatedSection>
+
+        {/* Trivia Game Section */}
+        <AnimatedSection delay={(guideContent.points.length + 3) * 150} animationName="animate-fade-in-up">
+          <TriviaGame />
+        </AnimatedSection>
+
       </main>
       <Footer />
     </div>
