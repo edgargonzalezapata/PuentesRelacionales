@@ -5,7 +5,7 @@ import { generatePersonalizedActionPrompts, type PersonalizedActionPromptsInput 
 import { z } from 'zod';
 
 const personalizedPromptsSchema = z.object({
-  relationshipContext: z.string().min(20, { message: "Please provide more details (at least 20 characters) about your relationships for better suggestions." }),
+  relationshipContext: z.string().min(20, { message: "Por favor, proporciona más detalles (al menos 20 caracteres) sobre tus relaciones para obtener mejores sugerencias." }),
 });
 
 export interface PersonalizedPromptsState {
@@ -27,7 +27,7 @@ export async function getPersonalizedPromptsAction(
 
   if (!validatedFields.success) {
     return {
-      message: "Validation failed. Please check your input.",
+      message: "La validación falló. Por favor, revisa tu entrada.",
       errors: validatedFields.error.flatten().fieldErrors,
       prompts: null,
       timestamp: Date.now(),
@@ -40,7 +40,7 @@ export async function getPersonalizedPromptsAction(
     };
     const result = await generatePersonalizedActionPrompts(input);
     return {
-      message: "Here are your personalized action prompts:",
+      message: "Aquí tienes tus sugerencias de acción personalizadas:",
       prompts: result.actionPrompts,
       errors: null,
       timestamp: Date.now(),
@@ -48,7 +48,7 @@ export async function getPersonalizedPromptsAction(
   } catch (error) {
     console.error("Error generating prompts:", error);
     return {
-      message: "An unexpected error occurred while generating prompts. Please try again later.",
+      message: "Ocurrió un error inesperado al generar las sugerencias. Por favor, inténtalo de nuevo más tarde.",
       prompts: null,
       errors: null,
       timestamp: Date.now(),

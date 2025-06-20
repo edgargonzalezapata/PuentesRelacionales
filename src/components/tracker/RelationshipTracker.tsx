@@ -35,7 +35,6 @@ export function RelationshipTracker() {
 
   useEffect(() => {
     if (typeof window !== 'undefined' && isClient) {
-      // Only save if tasks array has been initialized from localStorage or changed
       if (tasks.length > 0 || localStorage.getItem('relationalTasks') !== null) {
         localStorage.setItem('relationalTasks', JSON.stringify(tasks));
       }
@@ -77,12 +76,12 @@ export function RelationshipTracker() {
         <CardHeader>
           <div className="flex items-center gap-3">
             <Target className="h-8 w-8 text-primary" />
-            <CardTitle className="text-2xl font-headline text-primary">Relationship Goals Tracker</CardTitle>
+            <CardTitle className="text-2xl font-headline text-primary">Seguimiento de Metas Relacionales</CardTitle>
           </div>
-          <CardDescription className="text-muted-foreground">Loading tracker...</CardDescription>
+          <CardDescription className="text-muted-foreground">Cargando seguimiento...</CardDescription>
         </CardHeader>
         <CardContent className="h-40 flex items-center justify-center">
-          <p className="text-muted-foreground">Initializing your relationship goals...</p>
+          <p className="text-muted-foreground">Inicializando tus metas relacionales...</p>
         </CardContent>
       </Card>
     );
@@ -93,10 +92,10 @@ export function RelationshipTracker() {
       <CardHeader>
         <div className="flex items-center gap-3">
           <Target className="h-8 w-8 text-primary" />
-          <CardTitle className="text-2xl font-headline text-primary">Relationship Goals Tracker</CardTitle>
+          <CardTitle className="text-2xl font-headline text-primary">Seguimiento de Metas Relacionales</CardTitle>
         </div>
         <CardDescription className="text-muted-foreground">
-          Log your efforts and visualize your commitment to building stronger connections.
+          Registra tus esfuerzos y visualiza tu compromiso para construir conexiones más fuertes.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -105,20 +104,20 @@ export function RelationshipTracker() {
             type="text"
             value={newTaskText}
             onChange={(e) => setNewTaskText(e.target.value)}
-            placeholder="E.g., 'Called an old friend'"
+            placeholder="Ej: 'Llamé a un viejo amigo'"
             className="flex-grow border-border focus:ring-primary"
-            aria-label="New relational goal"
+            aria-label="Nueva meta relacional"
           />
           <Button type="submit" size="icon" variant="outline" className="border-primary text-primary hover:bg-primary/10">
             <PlusCircle className="h-5 w-5" />
-            <span className="sr-only">Add Goal</span>
+            <span className="sr-only">Añadir Meta</span>
           </Button>
         </form>
 
         {totalTasksCount > 0 && (
           <div className="space-y-2">
             <div className="flex justify-between items-center text-sm text-muted-foreground">
-              <span>Progress: {completedTasksCount} / {totalTasksCount} completed</span>
+              <span>Progreso: {completedTasksCount} de {totalTasksCount} completadas</span>
               <span>{Math.round(progressPercentage)}%</span>
             </div>
             <Progress value={progressPercentage} className="h-2 [&>div]:bg-primary" />
@@ -128,7 +127,7 @@ export function RelationshipTracker() {
         <Separator />
 
         {tasks.length === 0 ? (
-          <p className="text-center text-muted-foreground py-4">No goals added yet. Start building!</p>
+          <p className="text-center text-muted-foreground py-4">Aún no has añadido metas. ¡Empieza a construir!</p>
         ) : (
           <ScrollArea className="h-64 pr-3">
             <ul className="space-y-3">
@@ -159,7 +158,7 @@ export function RelationshipTracker() {
                     size="icon"
                     onClick={() => deleteTask(task.id)}
                     className="text-muted-foreground hover:text-destructive shrink-0"
-                    aria-label={`Delete task: ${task.text}`}
+                    aria-label={`Eliminar meta: ${task.text}`}
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>

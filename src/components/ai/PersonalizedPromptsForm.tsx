@@ -1,12 +1,12 @@
 // src/components/ai/PersonalizedPromptsForm.tsx
 "use client";
 
-import { useActionState, useOptimistic, useRef, useEffect, type FormEvent } from 'react';
+import { useActionState, useEffect, useRef, type FormEvent } from 'react';
 import { useFormStatus } from 'react-dom';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Lightbulb, Loader2, Send, ThumbsUp, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { Lightbulb, Loader2, Send, AlertCircle, CheckCircle2 } from 'lucide-react';
 import { getPersonalizedPromptsAction, type PersonalizedPromptsState } from '@/app/actions';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
@@ -22,7 +22,7 @@ function SubmitButton() {
   return (
     <Button type="submit" disabled={pending} className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground">
       {pending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Send className="mr-2 h-4 w-4" />}
-      Get Personalized Prompts
+      Obtener Sugerencias Personalizadas
     </Button>
   );
 }
@@ -33,26 +33,25 @@ export function PersonalizedPromptsForm() {
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
-    if (state?.message && state.timestamp) { // Check timestamp to avoid re-triggering on mount
+    if (state?.message && state.timestamp) { 
       if (state.errors) {
         toast({
           variant: "destructive",
-          title: "Input Error",
-          description: state.message || "Please check your input.",
+          title: "Error en la Entrada",
+          description: state.message || "Por favor, revisa tu entrada.",
         });
       } else if (state.prompts && state.prompts.length > 0) {
          // No toast for success, prompts are displayed directly
       } else if (state.prompts && state.prompts.length === 0) {
         toast({
-          title: "No Prompts Generated",
-          description: "We couldn't generate prompts for your input. Try rephrasing.",
+          title: "No se Generaron Sugerencias",
+          description: "No pudimos generar sugerencias para tu entrada. Intenta reformular.",
         });
       } else if (!state.errors && !state.prompts) {
-        // This could be an error case from the backend not caught as 'errors'
          toast({
           variant: "destructive",
-          title: "Something went wrong",
-          description: state.message || "Could not generate prompts.",
+          title: "Algo salió mal",
+          description: state.message || "No se pudieron generar las sugerencias.",
         });
       }
     }
@@ -69,10 +68,10 @@ export function PersonalizedPromptsForm() {
       <CardHeader>
         <div className="flex items-center gap-3">
           <Lightbulb className="h-8 w-8 text-primary" />
-          <CardTitle className="text-2xl font-headline text-primary">Personalized Action Prompts</CardTitle>
+          <CardTitle className="text-2xl font-headline text-primary">Sugerencias de Acción Personalizadas</CardTitle>
         </div>
         <CardDescription className="text-muted-foreground">
-          Share a bit about your current relationships (challenges, aspirations) to receive personalized, actionable suggestions.
+          Comparte un poco sobre tus relaciones actuales (desafíos, aspiraciones) para recibir sugerencias personalizadas y prácticas.
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -81,10 +80,10 @@ export function PersonalizedPromptsForm() {
             <Textarea
               id="relationshipContext"
               name="relationshipContext"
-              placeholder="E.g., 'I struggle to connect deeply with new people in my church group.' or 'I want to mend a strained relationship with a family member.'"
+              placeholder="Ej: 'Me cuesta conectar profundamente con gente nueva en mi grupo de la iglesia.' o 'Quiero reparar una relación tensa con un familiar.'"
               rows={5}
               className="border-border focus:ring-primary"
-              aria-label="Describe your current relationship context"
+              aria-label="Describe tu contexto relacional actual"
             />
             {state?.errors?.relationshipContext && (
               <p className="text-sm text-destructive mt-1">
@@ -100,7 +99,7 @@ export function PersonalizedPromptsForm() {
         <CardFooter className="flex-col items-start gap-4 pt-6">
           <Alert variant="default" className="bg-accent/20 border-accent">
              <CheckCircle2 className="h-5 w-5 text-accent" />
-            <AlertTitle className="font-headline text-accent">Actionable Suggestions</AlertTitle>
+            <AlertTitle className="font-headline text-accent">Sugerencias Prácticas</AlertTitle>
             <AlertDescription>
               <ul className="list-disc list-inside space-y-2 mt-2 text-accent-foreground/90">
                 {state.prompts.map((prompt, index) => (
