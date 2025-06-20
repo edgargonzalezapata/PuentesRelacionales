@@ -151,43 +151,6 @@ export default function Home() {
           </ContentCard>
         </AnimatedSection>
 
-        {/* Personalized Action Prompts */}
-        <AnimatedSection delay={(guideContent.points.length + 3) * 150} animationName="animate-fade-in-up">
-          <PersonalizedPromptsForm />
-        </AnimatedSection>
-
-        {/* Relationship Tracker */}
-        <AnimatedSection delay={(guideContent.points.length + 4) * 150} animationName="animate-fade-in-up">
-          <RelationshipTracker />
-        </AnimatedSection>
-        
-        {/* Prayer Section */}
-        <AnimatedSection delay={(guideContent.points.length + 5) * 150} animationName="animate-fade-in-up">
-          <ContentCard title={guideContent.prayer.title} icon={guideContent.prayer.icon} className="bg-primary/5">
-            <div className="flex items-center justify-center py-4">
-                 <Sparkles className="h-10 w-10 text-primary mr-4" />
-                 <p className="italic text-foreground/80 leading-loose">{guideContent.prayer.text}</p>
-            </div>
-          </ContentCard>
-        </AnimatedSection>
-
-        {/* Download Guide Section */}
-        <AnimatedSection delay={(guideContent.points.length + 6) * 150} animationName="animate-fade-in">
-          <section className="text-center py-10">
-            <SectionTitle title="Offline Access" icon={Download} />
-            <p className="text-muted-foreground mb-6 max-w-lg mx-auto">
-              Download a PDF version of this guide for offline reading and sharing.
-            </p>
-            <Button asChild size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105">
-              <a href="/guia-relacional-jesus.pdf" download>
-                <Download className="mr-2 h-5 w-5" />
-                Download Guide (PDF)
-              </a>
-            </Button>
-             <p className="text-xs text-muted-foreground mt-3">(Note: Developer to provide the actual PDF file at /public/guia-relacional-jesus.pdf)</p>
-          </section>
-        </AnimatedSection>
-
       </main>
       <Footer />
     </div>
